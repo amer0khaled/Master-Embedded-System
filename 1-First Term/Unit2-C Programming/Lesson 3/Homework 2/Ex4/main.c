@@ -23,7 +23,5 @@ int main()
         printf("You entered zero.");
    }
    
-    
-
     return 0;
 }
