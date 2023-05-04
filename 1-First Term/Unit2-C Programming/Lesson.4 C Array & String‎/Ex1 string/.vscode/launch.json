@@ -1,0 +1,24 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "cppdbg",
+      "request": "launch",
+      "args": [],
+      "stopAtEntry": false,
+      "externalConsole": true,
+      "cwd": "d:/github Directories/Master-Embedded-System/Master-Embedded-System/1-First Term/Unit2-C Programming/Lesson.4 C Array & String‎/Ex1 string",
+      "program": "d:/github Directories/Master-Embedded-System/Master-Embedded-System/1-First Term/Unit2-C Programming/Lesson.4 C Array & String‎/Ex1 string/build/Debug/outDebug",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "setupCommands": [
+        {
+          "description": "Enable pretty-printing for gdb",
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ]
+    }
+  ]
+}
