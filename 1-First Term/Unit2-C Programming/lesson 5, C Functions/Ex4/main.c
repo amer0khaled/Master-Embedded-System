@@ -27,6 +27,7 @@ long long power_number(int base,  int power)
          power--;
 
          return (base * power_number(base, power));
+
     }
     else
     {
