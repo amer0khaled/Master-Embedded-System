@@ -1,3 +1,6 @@
+
+/*count ones of binary*/
+
 #include<stdio.h>
 
 #define READ_BIT(num, bit) ((num & (1 << bit)) >> bit)

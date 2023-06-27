@@ -1,3 +1,5 @@
+/*max ones between two zeros*/
+
 #include "stdio.h"
 char MAX_ONES(char num);
 

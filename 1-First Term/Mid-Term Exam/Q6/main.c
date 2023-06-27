@@ -1,3 +1,6 @@
+
+/*get unique number of an array*/
+
 #include<stdio.h>
 #include<stdlib.h>
 

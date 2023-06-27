@@ -1,3 +1,6 @@
+
+/*get prime numbers through a certain interval*/
+
 #include<stdio.h>
 
 void Get_prime(int num1, int num2);

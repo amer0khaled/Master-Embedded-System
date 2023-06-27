@@ -1,3 +1,6 @@
+
+/*reverse digita of a number*/
+
 #include "stdio.h"
 
 int reverse(int num);
