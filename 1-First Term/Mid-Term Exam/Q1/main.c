@@ -1,4 +1,7 @@
 
+
+
+/*sum digits of a number*/
 #include<stdio.h>
 
 unsigned int calc_number_of_digits(unsigned int num);
