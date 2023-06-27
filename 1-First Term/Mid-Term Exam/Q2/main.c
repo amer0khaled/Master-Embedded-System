@@ -1,6 +1,8 @@
 #include<stdio.h>
 #include<math.h>
 
+/*get sqrt of a number*/
+
 void get_square_root(int num);
 
 int main()
