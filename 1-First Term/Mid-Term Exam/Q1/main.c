@@ -2,60 +2,32 @@
 
 
 /*sum digits of a number*/
-#include<stdio.h>
 
-unsigned int calc_number_of_digits(unsigned int num);
-
-unsigned int sum_digits(unsigned int num, unsigned int number_of_digits);
-
-int main(void)
+#include <stdio.h>
+int sum_digits(int num);
+int main()
 {
-    unsigned int num;
-    unsigned int result = 0;
-    unsigned int number_of_digits = 0;
+    int num;
 
-    printf("Enter the number: ");
-    scanf("%u", &num);
+    printf("Enter num: ");
+    scanf("%d", &num);
 
-    number_of_digits = calc_number_of_digits(num);
-
-    result = sum_digits(num, number_of_digits);
-
-    printf("result = %u", result);
-
+    printf("sum of digits = %d", sum_digits(num));
+    
     return 0;
-
 }
 
-
-/*to calculate number of digits*/
-unsigned int calc_number_of_digits(unsigned int num)
-{
-    int counter = 1;
-
-    while(num = num / 10)
-    {
-        counter++;
-    }
-
-    return counter;
-}
-
-
-/*to sum digits*/
-unsigned int sum_digits(unsigned int num, unsigned int number_of_digits)
+int sum_digits(int num)
 {   
-    unsigned int i= 0;
-    unsigned int temp = 0;
-    unsigned int sum = 0;
+    int sum = 0;
+    int temp = 1;
 
-    for(i = 0; i < number_of_digits; i++)
+    while (temp != 0)
     {
-        temp = num % 10;
-        num = num / 10;
+        temp = num %10;
+        num = num /10;
         sum+=temp;
     }
 
     return sum;
-
 }
