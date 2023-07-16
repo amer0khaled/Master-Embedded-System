@@ -262,3 +262,13 @@
 2023-07-11 09:10:14,185 [INFO] LogOutputStream:76 - [STDOUT_REDIRECT] withoutVersionV1.8.0
 2023-07-11 09:10:15,639 [INFO] ApiDb:226 - Save user favorites file C:\Users\Admin/.stm32cubeide/favorites.mcus.txt: 0 item(s)
 2023-07-11 09:10:15,642 [INFO] ApiDb:230 - User favorites MCUs=[]
+2023-07-12 14:19:28,376 [INFO] Activator:178 - 
+
+
+2023-07-12 14:19:28,379 [INFO] Activator:179 - !SESSION log4j initialized
+2023-07-12 14:20:16,169 [INFO] RetryExec:97 - I/O exception (org.apache.http.NoHttpResponseException) caught when processing request to {s}->https://download.eclipse.org:443: The target server failed to respond
+2023-07-12 14:20:16,171 [INFO] RetryExec:113 - Retrying request to {s}->https://download.eclipse.org:443
+2023-07-12 14:20:17,031 [INFO] RetryExec:97 - I/O exception (org.apache.http.NoHttpResponseException) caught when processing request to {s}->https://archive.eclipse.org:443: The target server failed to respond
+2023-07-12 14:20:17,032 [INFO] RetryExec:113 - Retrying request to {s}->https://archive.eclipse.org:443
+2023-07-12 14:20:17,984 [INFO] RetryExec:97 - I/O exception (org.apache.http.NoHttpResponseException) caught when processing request to {s}->https://download.eclipse.org:443: The target server failed to respond
+2023-07-12 14:20:17,985 [INFO] RetryExec:113 - Retrying request to {s}->https://download.eclipse.org:443
