@@ -15,6 +15,8 @@ typedef enum
 	Stack_is_full,
 	Stack_is_empty,
 	Stack_is_not_empty,
+	Stack_NO_Error,
+	Stack_Error
 	
 }StackStatus;
 
@@ -39,7 +41,7 @@ typedef struct Stack
 
 void Stack_init(Stack * ps);
 
-void Stack_push(StackType data, Stack * ps);
+StackStatus Stack_push(StackType data, Stack * ps);
 
 StackType Stack_pop(Stack * ps);
 

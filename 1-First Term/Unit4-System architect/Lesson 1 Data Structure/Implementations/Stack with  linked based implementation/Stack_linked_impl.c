@@ -7,17 +7,27 @@ void Stack_init(Stack * ps)
 	ps->size = 0;
 }
 
-void Stack_push(StackType data, Stack * ps)
+StackStatus Stack_push(StackType data, Stack * ps)
 {
 	StackNode * pn = (StackNode *) malloc(sizeof(StackNode));
 	
-	pn->data = data;
+	if(pn != NULL)
+	{
+		pn->data = data;
+		
+		pn->next = ps->top;
+		
+		ps->top = pn;
 	
-	pn->next = ps->top;
+		ps->size++;
+		
+		return Stack_NO_Error;
+	}
+	else
+	{
+		return Stack_Error;
+	}
 	
-	ps->top = pn;
-	
-	ps->size++;
 	
 }
 
