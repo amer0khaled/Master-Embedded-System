@@ -1,0 +1,7 @@
+20:10:10 **** Incremental Build of configuration Debug for project Lab2_MCU_Clock ****
+make -j12 all 
+arm-none-eabi-size   Lab2_MCU_Clock.elf 
+   text	   data	    bss	    dec	    hex	filename
+    700	     12	   1564	   2276	    8e4	Lab2_MCU_Clock.elf
+Finished building: default.size.stdout
+ 

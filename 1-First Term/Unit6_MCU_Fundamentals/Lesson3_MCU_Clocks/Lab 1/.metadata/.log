@@ -1,0 +1,21 @@
+!SESSION 2023-08-23 18:11:18.910 -----------------------------------------------
+eclipse.buildId=Version 1.4.0
+java.version=1.8.0_252
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2023-08-23 18:12:22.714
+!MESSAGE Log4j initialized with config file D:\amer khaled\GitHub\Master-Embedded-System\1-First Term\Unit6_MCU_Fundamentals\Lesson3_MCU_Clocks\Lab 1\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2023-08-23 18:12:25.599
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 4 4 2023-08-23 18:12:26.151
+!MESSAGE com.st.stm32cube.ide.mcu.ide/META-INF/version/build_ref file not found, build reference will not be reported into properties
+
+!ENTRY org.eclipse.cdt.core 1 0 2023-08-23 18:14:59.964
+!MESSAGE Indexed 'Lab1_MCU_Clock' (0 sources, 0 headers) in 0.005 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2023-08-23 18:15:02.529
+!MESSAGE Indexed 'Lab1_MCU_Clock' (3 sources, 52 headers) in 1.33 sec: 1,933 declarations; 2,743 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.043%)
