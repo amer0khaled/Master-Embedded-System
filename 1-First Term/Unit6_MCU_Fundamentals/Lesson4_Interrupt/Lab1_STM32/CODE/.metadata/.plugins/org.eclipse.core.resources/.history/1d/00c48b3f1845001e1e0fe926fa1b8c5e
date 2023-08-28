@@ -22,16 +22,17 @@
 #endif
 
 
+
 #include"Platform_Types.h"
 
 
-#define SET_BIT(REG, BIT_NUMBER) REG |= (1U<<BIT_NUMBER)
+#define SET_BIT(REG, BIT_NUMBER)     REG |= (1U<<BIT_NUMBER)
+#define TOGGLE_BIT(REG, BIT_NUMBER)  REG ^= (1U<<BIT_NUMBER)
 
 //RCC Configuration
-
 #define RCC_BASE             0x40021000
-#define RCC_APB2ENR_offset   0x18
-#define RCC_APB2ENR          *(vuint32 *)(RCC_BASE + RCC_APB2ENR_offset) //APB2 clock enable register
+#define RCC_APB2ENR_OFFSET   0x18
+#define RCC_APB2ENR          *(vuint32 *)(RCC_BASE + RCC_APB2ENR_OFFSET) //APB2 clock enable register
 #define IOPAEN      2        //GPOIA enable bit
 
 
@@ -39,39 +40,59 @@
 #define GPIOA_BASE   0x40010800
 #define GPIOA_CRH   *(vuint32 *)(GPIOA_BASE + 0x04) //CTRL REG
 #define GPIOA_ODR   *(vuint32 *)(GPIOA_BASE + 0x0c) //Output Data REG
-
-
 #define GPIOA13     (1UL<<13)
 
-typedef union
+
+//AFIO Configuration
+#define AFIO_
+#define AFIO_EXTICR1_OOFSET 0x08
+
+
+//EXTI Configurations
+#define EXTI_BASE        0x40010400
+#define EXTI_IMR_OFFSET  0x00
+#define EXTI_IMR         *(vuint32 *)(EXTI_BASE + EXTI_IMR_OFFSET)
+
+
+
+
+void Clock_Init(void)
 {
-	vsint32 all_fields;
-	struct
-	{
-		vsint32 reserved :13;
-		vsint32 pin_13 	 :1;
-	}Pin;
-}R_ODR_t;
+	// Enable Clock for GPIOA
+	SET_BIT(RCC_APB2ENR, 2);
 
-volatile R_ODR_t* R_ODR = (volatile R_ODR_t*)(GPIOA_BASE + 0x0C);
+	//Enable Clock for Alternate function IO
+	SET_BIT(RCC_APB2ENR, 0);
+}
 
-int main(void)
+void GPIO_Init(void)
 {
 	GPIOA_CRH    &=  0xFF0FFFFF;
 	GPIOA_CRH    |=  0x00200000;
+}
 
-	//set GPIOA enable bit
-	SET_BIT(RCC_APB2ENR, 2);
+int main(void)
+{
+	//Enable EXTI0 Mask
+	SET_BIT(EXTI_IMR, 0);
 
-	while(1)
-	{
-		R_ODR->Pin.pin_13 = 1;
-		for(int i = 0; i < 50000; i++);
 
-		R_ODR->Pin.pin_13 = 0;
-		for(int i = 0; i < 50000; i++);
 
-	}
+	while(1);
+
 
 	return 0;
 }
+
+void EXTI0_IRQHandler()
+{
+
+}
+
+
+
+
+
+
+
+

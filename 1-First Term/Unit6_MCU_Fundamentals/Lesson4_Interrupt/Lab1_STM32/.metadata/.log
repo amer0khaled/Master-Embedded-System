@@ -1,0 +1,324 @@
+!SESSION 2023-08-28 00:31:29.274 -----------------------------------------------
+eclipse.buildId=Version 1.4.0
+java.version=1.8.0_252
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  D:\amer khaled\GitHub\Master-Embedded-System\1-First Term\Unit6_MCU_Fundamentals\Lesson4_Interrupt\Lab 1\CODE\Lab1_CortexM3_EXTI\.cproject
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 D:\amer khaled\GitHub\Master-Embedded-System\1-First Term\Unit6_MCU_Fundamentals\Lesson4_Interrupt\Lab 1\CODE\Lab1_CortexM3_EXTI\.cproject
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2023-08-28 00:31:34.618
+!MESSAGE Log4j initialized with config file D:\amer khaled\GitHub\Master-Embedded-System\1-First Term\Unit6_MCU_Fundamentals\Lesson4_Interrupt\Lab 1\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2023-08-28 00:31:36.455
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY org.eclipse.cdt.core 1 0 2023-08-28 00:31:37.172
+!MESSAGE Indexed 'Lab1_CortexM3_EXTI' (3 sources, 1 headers) in 0.253 sec: 98 declarations; 101 references; 11 unresolved inclusions; 0 syntax errors; 24 unresolved names (11%)
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 4 4 2023-08-28 00:31:41.269
+!MESSAGE com.st.stm32cube.ide.mcu.ide/META-INF/version/build_ref file not found, build reference will not be reported into properties
+
+!ENTRY org.eclipse.ui.ide 4 0 2023-08-28 00:31:58.101
+!MESSAGE Could not import project located at D:\amer khaled\GitHub\Master-Embedded-System\1-First Term\Unit6_MCU_Fundamentals\Lesson4_Interrupt\Lab 1\.metadata
+!STACK 0
+org.eclipse.ui.internal.wizards.datatransfer.CouldNotImportProjectException: Could not import project located at D:\amer khaled\GitHub\Master-Embedded-System\1-First Term\Unit6_MCU_Fundamentals\Lesson4_Interrupt\Lab 1\.metadata
+	at org.eclipse.ui.internal.wizards.datatransfer.SmartImportJob.toExistingOrNewProject(SmartImportJob.java:565)
+	at org.eclipse.ui.internal.wizards.datatransfer.SmartImportJob.run(SmartImportJob.java:252)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:63)
+Caused by: org.eclipse.core.internal.resources.ResourceException: Invalid project description.
+	at org.eclipse.core.internal.resources.Project.checkDescription(Project.java:173)
+	at org.eclipse.core.internal.resources.Project.assertCreateRequirements(Project.java:57)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:267)
+	at org.eclipse.core.internal.resources.Project.create(Project.java:251)
+	at org.eclipse.ui.internal.wizards.datatransfer.SmartImportJob.createOrImportProject(SmartImportJob.java:604)
+	at org.eclipse.ui.internal.wizards.datatransfer.SmartImportJob.toExistingOrNewProject(SmartImportJob.java:552)
+	... 2 more
+!SESSION 2023-08-28 00:32:12.852 -----------------------------------------------
+eclipse.buildId=Version 1.4.0
+java.version=1.8.0_252
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Framework arguments:  D:\amer khaled\GitHub\Master-Embedded-System\1-First Term\Unit6_MCU_Fundamentals\Lesson4_Interrupt\Lab 1\CODE\Lab1_CortexM3_EXTI\.project
+Command-line arguments:  -os win32 -ws win32 -arch x86_64 D:\amer khaled\GitHub\Master-Embedded-System\1-First Term\Unit6_MCU_Fundamentals\Lesson4_Interrupt\Lab 1\CODE\Lab1_CortexM3_EXTI\.project
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2023-08-28 00:32:18.649
+!MESSAGE Log4j initialized with config file D:\amer khaled\GitHub\Master-Embedded-System\1-First Term\Unit6_MCU_Fundamentals\Lesson4_Interrupt\Lab 1\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2023-08-28 00:32:21.482
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 4 4 2023-08-28 00:32:22.076
+!MESSAGE com.st.stm32cube.ide.mcu.ide/META-INF/version/build_ref file not found, build reference will not be reported into properties
+
+!ENTRY org.eclipse.cdt.core 1 0 2023-08-28 00:32:22.243
+!MESSAGE Indexed 'Lab1_CortexM3_EXTI' (3 sources, 54 headers) in 0.654 sec: 1,962 declarations; 2,801 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.042%)
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.382
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.382
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.382
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.382
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.382
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.383
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.383
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.383
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.383
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.383
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.395
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.395
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.396
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.396
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.396
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.396
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.396
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.397
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.397
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.397
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.400
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.400
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.400
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.400
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.401
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.401
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.401
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.401
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.401
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.401
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.403
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.403
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.404
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.404
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.404
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.404
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.404
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.405
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.405
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.405
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.407
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.407
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.407
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.407
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.408
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.408
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.408
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.408
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.408
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.408
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.414
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.414
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.414
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.415
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.415
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.415
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.415
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.415
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.415
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.415
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.440
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.440
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.440
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.440
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.440
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.440
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.441
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.441
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.441
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.441
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.460
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.460
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.460
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.460
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.461
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.461
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.461
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.461
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.461
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.461
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.469
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.469
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.469
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.470
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.470
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.470
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.470
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.470
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:33:37.470
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:33:37.470
+!MESSAGE Falling back to default toolchain

@@ -1,0 +1,325 @@
+!SESSION 2023-08-27 20:46:54.485 -----------------------------------------------
+eclipse.buildId=Version 1.4.0
+java.version=1.8.0_252
+java.vendor=AdoptOpenJDK
+BootLoader constants: OS=win32, ARCH=x86_64, WS=win32, NL=en_US
+Command-line arguments:  -os win32 -ws win32 -arch x86_64
+
+!ENTRY com.st.stm32cube.ide.mcu.informationcenter 1 1 2023-08-27 20:47:12.521
+!MESSAGE Log4j initialized with config file D:\amer khaled\GitHub\Master-Embedded-System\1-First Term\Unit6_MCU_Fundamentals\Lesson4_Interrupt\Lab 1\.metadata\.log4j.xml
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 1 1 2023-08-27 20:47:15.136
+!MESSAGE Started RMI Server, listening on port 41337
+
+!ENTRY com.st.stm32cube.ide.mcu.ide 4 4 2023-08-27 20:47:15.724
+!MESSAGE com.st.stm32cube.ide.mcu.ide/META-INF/version/build_ref file not found, build reference will not be reported into properties
+
+!ENTRY org.eclipse.cdt.core 1 0 2023-08-27 20:49:09.942
+!MESSAGE Indexed 'Lab1_CortexM3_EXTI' (0 sources, 0 headers) in 0.002 sec: 0 declarations; 0 references; 0 unresolved inclusions; 0 syntax errors; 0 unresolved names (0%)
+
+!ENTRY org.eclipse.cdt.core 1 0 2023-08-27 20:49:12.296
+!MESSAGE Indexed 'Lab1_CortexM3_EXTI' (3 sources, 52 headers) in 1.17 sec: 1,933 declarations; 2,743 references; 0 unresolved inclusions; 1 syntax errors; 2 unresolved names (0.043%)
+
+!ENTRY org.eclipse.cdt.ui 4 0 2023-08-27 21:50:04.877
+!MESSAGE Error in CDT UI during reconcile
+!STACK 1
+C Model Exception: C Model Status [Element main.c does not exist.]
+	at org.eclipse.cdt.internal.core.model.CElement.newNotPresentException(CElement.java:486)
+	at org.eclipse.cdt.internal.core.model.TranslationUnit.makeConsistent(TranslationUnit.java:583)
+	at org.eclipse.cdt.internal.core.model.ReconcileWorkingCopyOperation.executeOperation(ReconcileWorkingCopyOperation.java:65)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.execute(CModelOperation.java:346)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.run(CModelOperation.java:613)
+	at org.eclipse.cdt.internal.core.model.CModelOperation.runOperation(CModelOperation.java:641)
+	at org.eclipse.cdt.internal.core.model.WorkingCopy.reconcile(WorkingCopy.java:365)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:79)
+	at org.eclipse.cdt.internal.ui.text.CReconcilingStrategy.reconcile(CReconcilingStrategy.java:64)
+	at org.eclipse.cdt.internal.ui.text.CompositeReconcilingStrategy.reconcile(CompositeReconcilingStrategy.java:89)
+	at org.eclipse.cdt.internal.ui.text.CCompositeReconcilingStrategy.reconcile(CCompositeReconcilingStrategy.java:90)
+	at org.eclipse.jface.text.reconciler.MonoReconciler.process(MonoReconciler.java:76)
+	at org.eclipse.cdt.internal.ui.text.CReconciler.process(CReconciler.java:346)
+	at org.eclipse.jface.text.reconciler.AbstractReconciler$BackgroundThread.run(AbstractReconciler.java:210)
+!SUBENTRY 1 org.eclipse.cdt.core 4 969 2023-08-27 21:50:04.878
+!MESSAGE Element main.c does not exist.
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:24.983
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:24.984
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:24.984
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:24.984
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:24.984
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:24.984
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:24.985
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:24.985
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:24.985
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:24.985
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:24.996
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:24.997
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:24.997
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:24.997
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:24.997
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:24.997
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:24.997
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:24.998
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:24.998
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:24.998
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.000
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.000
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.001
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.001
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.001
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.001
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.001
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.001
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.002
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.002
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.004
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.004
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.004
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.004
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.005
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.005
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.005
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.005
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.005
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.005
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.008
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.008
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.008
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.008
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.008
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.009
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.009
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.009
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.009
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.009
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.015
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.016
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.016
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.016
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.016
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.016
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.016
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.016
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.017
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.017
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.046
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.046
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.046
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.046
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.046
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.046
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.047
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.047
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.047
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.047
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.062
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.062
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.063
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.063
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.063
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.063
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.063
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.063
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.063
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.064
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.072
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.072
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.073
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.073
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.073
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.073
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.073
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.073
+!MESSAGE Falling back to default toolchain
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 4 4 2023-08-28 00:03:25.073
+!MESSAGE Type or version is empty: ; 
+
+!ENTRY com.st.stm32cube.ide.mcu.toolchain 2 2 2023-08-28 00:03:25.074
+!MESSAGE Falling back to default toolchain
+
+!ENTRY org.eclipse.ui.ide 4 4 2023-08-28 00:25:48.244
+!MESSAGE Problems saving workspace
+
+!ENTRY org.eclipse.ui.ide 2 1 2023-08-28 00:25:48.244
+!MESSAGE Problems occurred while trying to save the state of the workbench.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2023-08-28 00:25:48.244
+!MESSAGE The project description file (.project) for 'Lab1_CortexM3_EXTI' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+!SUBENTRY 1 org.eclipse.core.resources 2 234 2023-08-28 00:25:48.244
+!MESSAGE The project description file (.project) for 'RemoteSystemsTempFiles' was missing.  This file contains important information about the project.  A new project description file has been created, but some information about the project may have been lost.
+
+!ENTRY org.eclipse.core.resources 2 10035 2023-08-28 00:25:48.360
+!MESSAGE The workspace will exit with unsaved changes in this session.
