@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1681259631 source:d:\embedded materials\data structure implementations\linked list\main.c
+	"linked_list.h"
+
+1681259475 source:d:\embedded materials\data structure implementations\linked list\linked_list.c
+	"Linked_list.h"
+
+1681259448 d:\embedded materials\data structure implementations\linked list\linked_list.h
+	<stdlib.h>
+
