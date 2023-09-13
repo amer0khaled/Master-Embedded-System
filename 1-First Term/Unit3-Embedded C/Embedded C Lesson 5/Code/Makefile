@@ -24,7 +24,7 @@ all: $(TARGET).bin
 	@echo "==========Compilation and Assembling Processes are Done=========="
 
 $(TARGET).elf: $(OBJ) $(OBJASM)
-	$(CC)ld -T linker_script.ld -Map=$(TARGET).map $(LIBS) $(OBJ) $(OBJASM) -o $@
+	$(CC)ld -T linker_script.ld -Map=$(TARGET).map $(LIBS) $^ -o $@
 	@echo "==========Linking Process is Done=========="
 
 $(TARGET).bin: $(TARGET).elf
