@@ -1,0 +1,327 @@
+
+/*
+===========================================
+		Includes
+===========================================
+ */
+
+#include "STM32_I2C.h"
+
+
+/*
+===========================================
+		Generic Variables
+===========================================
+ */
+
+I2C_Config Global_I2C_Config[2] ;
+
+typedef enum
+{
+	Disable,
+	Enable
+}Function_State;
+
+
+typedef enum
+{
+	Disable_Flag,
+	Enable_Flag
+}Flag_Status;
+
+typedef enum
+{
+	SR1_SB,
+	SR1_ADDR,
+	SR1_BTF,
+	SR1_TxE,
+	SR1_ADD10,
+	SR1_RxNE,
+	SR2_MSL,
+	SR2_Busy,
+	SR2_TRA
+
+}Status;
+
+
+
+/*
+===========================================
+		Generic Macros
+===========================================
+ */
+
+#define I2C1_INDEX		0
+#define I2C2_INDEX		1
+
+
+/*
+===========================================
+			Generic APIs
+===========================================
+ */
+
+void I2C_Generate_Start(I2C_TypeDef I2C_Instant, Function_State state, Repeated_Start start);
+
+Flag_Status Get_Flag_Status(I2C_TypeDef I2C_Instant, Status flag);
+
+/*
+===========================================
+			APIs
+===========================================
+ */
+
+
+void MCAL_I2C_Init(I2C_TypeDef * I2C_Instant, I2C_Config * I2C_CFG)
+{
+	uint16_t TempReg = 0;
+	uint32_t PCLK1 = 0;
+	uint8_t Freq = 0;
+	uint16_t CCR = 0;
+
+	if(I2C_Instant == I2C1)
+	{
+		Global_I2C_Config[I2C1_INDEX] = * I2C_CFG;
+	}
+	else
+	{
+		Global_I2C_Config[I2C2_INDEX] = * I2C_CFG;
+	}
+
+
+	//I2C_Mode
+	if(I2C_CFG->I2C_Mode == I2C_Mode_I2C)
+	{
+		CLEAR_BIT(I2C_Instant->I2C_CR1, 1);
+
+		/* Program the peripheral input clock in I2C_CR2 Register in order to generate correct
+		timings*/
+		PCLK1 = MCAL_RCC_GetPCLK1_Freq();
+
+		Freq = (uint8_t)(PCLK1/(uint32_t)1000000);
+
+		TempReg |= Freq;
+
+		I2C_Instant->I2C_CR2 = TempReg;
+
+		//Configure the clock control registers
+		TempReg = 0;
+
+
+		//I2C Operates in Standard Mode (SM) >>> [This Device Driver Not Supported Fast Mode (FM)]
+		TempReg &= ~(1<<15);
+
+		//Configure CCR which Controls the SCL clock in master mode
+		switch(I2C_CFG->I2C_CLK_Speed)
+		{
+		case I2C_CLK_Speed_SM_50KHz:
+			CCR = PCLK1/(2*50000);
+			break;
+
+		case I2C_CLK_Speed_SM_60KHz:
+			CCR = PCLK1/(2*60000);
+			break;
+
+		case I2C_CLK_Speed_SM_100KHz:
+			CCR = PCLK1/(2*100000);
+			break;
+
+		}
+
+		TempReg |= CCR;
+
+		I2C_Instant->I2C_CCR = TempReg;
+
+		//Configure the rise time register
+		I2C_Instant->I2C_TRISE = Freq + 1;
+
+
+		//Configure Clock Stretching
+		TempReg = 0;
+
+		if(I2C_CFG->I2C_CLK_Strerch == I2C_CLK_Strerch_EN)
+		{
+			CLEAR_BIT(TempReg, 7);
+		}
+		else
+		{
+			SET_BIT(TempReg, 7);
+		}
+
+		//ACK Control
+		if(I2C_CFG->I2C_ACK_Control == I2C_ACK_Control_EN)
+		{
+			SET_BIT(TempReg, 10);
+		}
+		else
+		{
+			CLEAR_BIT(TempReg, 10);
+		}
+
+		I2C_Instant->I2C_CR1 = TempReg;
+
+		//if the Device operates as a slave
+		TempReg = 0;
+
+		if(I2C_CFG->I2C_Slave_Addressing_Mode.Enable_Dual_Address == I2C_Addressing_Mode_Dual_EN)
+		{
+			SET_BIT(TempReg, 0);
+
+			I2C_Instant->I2C_OAR2 = TempReg;
+		}
+		else
+		{
+			CLEAR_BIT(TempReg, 0);
+		}
+
+
+		TempReg = 0;
+
+		if(I2C_CFG->I2C_Slave_Addressing_Mode.Addressing_Mode == I2C_Slave_Addressing_Mode_7bit)
+		{
+			if(I2C_CFG->I2C_Slave_Addressing_Mode.Enable_Dual_Address == I2C_Addressing_Mode_Dual_EN)
+			{
+				I2C_Instant->I2C_OAR2 = I2C_CFG->I2C_Slave_Addressing_Mode.Secondary_Address << 1;
+			}
+
+			I2C_Instant->I2C_OAR1 = I2C_CFG->I2C_Slave_Addressing_Mode.Primary_Address   << 1;
+
+			CLEAR_BIT(TempReg, 15);
+		}
+
+		/*else
+		{
+			I2C_Instant->I2C_OAR1 = I2C_CFG->I2C_Slave_Addressing_Mode.Primary_Address;
+			SET_BIT(TempReg, 15);
+		}
+		 */
+		I2C_Instant->I2C_OAR1 = TempReg;
+
+
+
+
+	}
+	else if(I2C_CFG->I2C_Mode == I2C_Mode_SMBus)
+	{
+		//Not Supported
+	}
+
+
+	//Interrupt Enable (Slave Mode)
+	if(I2C_CFG->P_Slave_Event_CallBack != NULL) //if CallBack Function != NULL ,then the I2C is salve
+	{
+		SET_BIT(I2C_Instant->I2C_CR2, 8);
+		SET_BIT(I2C_Instant->I2C_CR2, 9);
+		SET_BIT(I2C_Instant->I2C_CR2, 10);
+
+		if(I2C_Instant == I2C1)
+		{
+			NVIC_Enable_I2C1_EV_IRQ31;
+			NVIC_Enable_I2C1_ER_IRQ32;
+		}
+		else if(I2C_Instant == I2C2)
+		{
+			NVIC_Enable_I2C2_EV_IRQ33;
+			NVIC_Enable_I2C2_ER_IRQ34;
+		}
+
+	}
+
+	//Enable I2C Peripheral
+	SET_BIT(I2C_Instant->I2C_CR1, 0);
+
+}
+
+void MCAL_I2C_DeInit(I2C_TypeDef * I2C_Instant)
+{
+	if(I2C_Instant == I2C1)
+	{
+		NVIC_Disable_I2C1_EV_IRQ31;
+		NVIC_Disable_I2C1_ER_IRQ32;
+
+		RCC_I2C1_CLK_DIS();
+	}
+	else if(I2C_Instant == I2C2)
+	{
+		NVIC_Disable_I2C2_EV_IRQ33;
+		NVIC_Disable_I2C2_ER_IRQ34;
+		RCC_I2C2_CLK_DIS();
+	}
+}
+
+void MCAL_I2C_GPIO_SetPin(I2C_TypeDef * I2C_Instant)
+{
+	//I2C1_SMBAl >>> PB.5
+
+	GPIO_PinConfig_t I2C_Pin;
+
+	if(I2C_Instant == I2C1)
+	{
+		//I2C1_SCL   >>> PB.6
+		I2C_Pin.GPIO_PinNumber = 6;
+		I2C_Pin.GPIO_PinMode   = GPIO_MODE_AFIO_OUTPUT_OPEN_DRAIN;
+		I2C_Pin.GPIO_PinSpeed  = GPIO_OUTPUT_SPEED_10MHz;
+
+		MCAL_GPIO_Init(GPIOB, &I2C_Pin);
+
+		//I2C1_SDA   >>> PB.7
+		I2C_Pin.GPIO_PinNumber = 7;
+		I2C_Pin.GPIO_PinMode   = GPIO_MODE_AFIO_OUTPUT_OPEN_DRAIN;
+		I2C_Pin.GPIO_PinSpeed  = GPIO_OUTPUT_SPEED_10MHz;
+
+		MCAL_GPIO_Init(GPIOB, &I2C_Pin);
+	}
+	else if(I2C_Instant == I2C2)
+	{
+		//I2C2_SCL  >>> PB.10
+		I2C_Pin.GPIO_PinNumber = 10;
+		I2C_Pin.GPIO_PinMode   = GPIO_MODE_AFIO_OUTPUT_OPEN_DRAIN;
+		I2C_Pin.GPIO_PinSpeed  = GPIO_OUTPUT_SPEED_10MHz;
+
+		MCAL_GPIO_Init(GPIOB, &I2C_Pin);
+
+		//I2C2_SDA  >>> PB.11
+		I2C_Pin.GPIO_PinNumber = 11;
+		I2C_Pin.GPIO_PinMode   = GPIO_MODE_AFIO_OUTPUT_OPEN_DRAIN;
+		I2C_Pin.GPIO_PinSpeed  = GPIO_OUTPUT_SPEED_10MHz;
+
+		MCAL_GPIO_Init(GPIOB, &I2C_Pin);
+
+	}
+
+
+	//2C2_SMBAl >>> PB.12
+
+}
+
+/*
+void I2C_Generate_Start(I2C_TypeDef I2C_Instant, Function_State state, Repeated_Start start)
+{
+	if(start != Repeated_Start)
+	{
+		//check if the BUS is idle
+
+	}
+}
+*/
+Flag_Status Get_Flag_Status(I2C_TypeDef* I2C_Instant, Status flag)
+{
+	volatile uint8_t status = 0;
+
+	switch(flag)
+	{
+	case SR1_SB:
+		status = READ_BIT(I2C_Instant->I2C_SR1, I2C_SR1_SB_Pos);
+		break;
+	}
+
+	return status;
+}
+
+
+
+void MCAL_I2C_Trasmitt(I2C_TypeDef I2C_Instant, uint8_t *data, Repeated_Start start, Stop_Condition);
+
+void MCAL_I2C_Receive(I2C_TypeDef I2C_Instant, uint8_t *data, Repeated_Start start, Stop_Condition);
+
+

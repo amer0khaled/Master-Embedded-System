@@ -1,0 +1,17 @@
+18:54:37 **** Incremental Build of configuration Debug for project Test_I2C_Driver ****
+make -j12 all 
+arm-none-eabi-gcc -gdwarf-2 "../STM32F103Cx_Drivers/Implementation/STM32_I2C.c" -mcpu=cortex-m3 -std=gnu11 -g3 -DSTM32 -DSTM32F1 -DSTM32F103C6Tx -DDEBUG -c -I../Inc -I"D:/amer khaled/Materials/Device Drivers/APP Layer/STM32_I2C_Driver/Test_I2C_Driver/STM32F103Cx_Drivers/interface" -I"D:/amer khaled/Materials/Device Drivers/APP Layer/STM32_I2C_Driver/Test_I2C_Driver/HAL/Interface" -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"STM32F103Cx_Drivers/Implementation/STM32_I2C.d" -MT"STM32F103Cx_Drivers/Implementation/STM32_I2C.o" --specs=nano.specs -mfloat-abi=soft -mthumb -o "STM32F103Cx_Drivers/Implementation/STM32_I2C.o"
+arm-none-eabi-gcc -gdwarf-2 -o "Test_I2C_Driver.elf" @"objects.list"   -mcpu=cortex-m3 -T"D:\amer khaled\Materials\Device Drivers\APP Layer\STM32_I2C_Driver\Test_I2C_Driver\STM32F103C6TX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Test_I2C_Driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfloat-abi=soft -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Test_I2C_Driver.elf
+ 
+arm-none-eabi-objdump -h -S  Test_I2C_Driver.elf  > "Test_I2C_Driver.list"
+arm-none-eabi-objcopy  -O binary  Test_I2C_Driver.elf  "Test_I2C_Driver.bin"
+arm-none-eabi-size   Test_I2C_Driver.elf 
+   text	   data	    bss	    dec	    hex	filename
+   4072	      8	   1712	   5792	   16a0	Test_I2C_Driver.elf
+Finished building: default.size.stdout
+ 
+Finished building: Test_I2C_Driver.bin
+ 
+Finished building: Test_I2C_Driver.list
+ 

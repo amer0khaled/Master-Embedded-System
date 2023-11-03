@@ -1,0 +1,13 @@
+/*
+ * STM32_I2C.h
+ *
+ *  Created on: Oct 22, 2023
+ *      Author: Admin
+ */
+
+#ifndef INTERFACE_STM32_I2C_H_
+#define INTERFACE_STM32_I2C_H_
+
+
+
+#endif /* INTERFACE_STM32_I2C_H_ */

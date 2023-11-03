@@ -1,0 +1,14 @@
+STM32_GPIO.c:5:9:Get_Position	24	static
+STM32_GPIO.c:83:6:MCAL_GPIO_Init	24	static
+STM32_GPIO.c:192:6:MCAL_GPIO_DeInit	16	static
+STM32_GPIO.c:249:9:MCAL_GPIO_ReadPin	16	static
+STM32_GPIO.c:267:10:MCAL_GPIO_ReadPort	16	static
+STM32_GPIO.c:287:6:MCAL_GPIO_WritePin	16	static
+STM32_GPIO.c:333:6:MCAL_GPIO_WritePort	16	static
+STM32_GPIO.c:340:6:MCAL_GPIO_WriteLowPort	16	static
+STM32_GPIO.c:350:6:MCAL_GPIO_WriteHihgPort	16	static
+STM32_GPIO.c:361:6:MCAL_GPIO_Write_Nibble	24	static
+STM32_GPIO.c:399:6:MCAL_GPIO_TogglePin	16	static
+STM32_GPIO.c:417:6:MCAL_GPIO_TogglePort	16	static
+STM32_GPIO.c:436:9:LOCK_Key_Sequence	24	static
+STM32_GPIO.c:468:9:MCAL_GPIO_LoackPin	16	static

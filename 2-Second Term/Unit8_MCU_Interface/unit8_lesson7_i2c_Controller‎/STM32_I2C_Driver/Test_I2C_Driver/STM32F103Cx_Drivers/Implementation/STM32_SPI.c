@@ -1,0 +1,562 @@
+
+
+/*
+===========================================
+		Includes
+===========================================
+ */
+
+#include "STM32_SPI.h"
+
+
+/*
+===========================================
+		Generic Variables
+===========================================
+ */
+
+
+
+SPI_Config * Global_SPI_Config[2];
+
+SPI_Config Global_SPI_Config1;
+
+SPI_Config Global_SPI_Config2;
+
+
+/*
+===========================================
+		Generic Macros
+===========================================
+ */
+
+#define SPI1_INDEX		0
+#define SPI2_INDEX		1
+
+
+#define Tx_BUFFER_EMPTY			1
+#define Tx_BUFFER_NOT_EMPTY		0
+
+#define Rx_BUFFER_EMPTY			0
+#define Rx_BUFFER_NOT_EMPTY		1
+
+
+
+
+/*
+===========================================
+			APIs
+===========================================
+ */
+
+
+
+void MCAL_SPI_Init(SPI_TypeDef * SPI_Instant, SPI_Config * SPI_CFG)
+{
+	//Safety for registers
+	volatile uint16_t tempreg_CR1 = 0;
+	volatile uint16_t tempreg_CR2 = 0;
+
+	if(SPI_Instant == SPI1)
+	{
+		Global_SPI_Config1 = * SPI_CFG;
+		Global_SPI_Config[SPI1_INDEX] = &Global_SPI_Config1;
+		RCC_SPI1_CLK_EN();
+
+	}
+	else if(SPI_Instant == SPI2)
+	{
+		Global_SPI_Config2 = * SPI_CFG;
+		Global_SPI_Config[SPI2_INDEX] = &Global_SPI_Config2;
+		RCC_SPI2_CLK_EN();
+	}
+
+
+	//Specifies the Device_State
+	switch(SPI_CFG->Device_State)
+	{
+	case SPI_Device_State_Master:
+		SET_BIT(tempreg_CR1, 2);
+		break;
+
+	case SPI_Device_State_Slave:
+		CLEAR_BIT(tempreg_CR1, 2);
+		break;
+	}
+
+
+	//Communication Mode
+	switch(SPI_CFG->Communication_Mode)
+	{
+	case SPI_Communication_Mode_1Line_ReceiveOnly:
+		SET_BIT(tempreg_CR1, 15);
+		CLEAR_BIT(tempreg_CR1, 14);
+		break;
+
+	case SPI_Communication_Mode_1Line_TransmitOnly:
+		SET_BIT(tempreg_CR1, 15);
+		SET_BIT(tempreg_CR1, 14);
+		break;
+
+	case SPI_Communication_Mode_2Line_FullDuplex:
+		CLEAR_BIT(tempreg_CR1, 15);
+		CLEAR_BIT(tempreg_CR1, 10);
+		break;
+
+	case SPI_Communication_Mode_2Line_ReceiveOnly:
+		CLEAR_BIT(tempreg_CR1, 15);
+		SET_BIT(tempreg_CR1, 10);
+		break;
+
+	}
+
+	//Set the DFF bit to define 8- or 16-bit data frame format
+	switch(SPI_CFG->Data_Size)
+	{
+	case SPI_Data_Size_8Bits:
+		CLEAR_BIT(tempreg_CR1, 11);
+		break;
+
+	case SPI_Data_Size_16Bits:
+		SET_BIT(tempreg_CR1, 11);
+		break;
+	}
+
+
+
+
+	/* Select the CPOL and CPHA bits to define one of the four relationships between the
+	data transfer and the serial clock (see Figure 240). For correct data transfer, the CPOL
+	and CPHA bits must be configured in the same way in the slave device and the master
+	device.*/
+
+	//clock polarity
+	switch(SPI_CFG->CLK_Polarity)
+	{
+	case SPI_CLK_Polarity_IdleLow:
+		CLEAR_BIT(tempreg_CR1, 1);
+		break;
+
+	case SPI_CLK_Polarity_IdleHigh:
+		SET_BIT(tempreg_CR1, 1);
+		break;
+
+	}
+
+
+	//clock phase
+	switch(SPI_CFG->CLK_Phase)
+	{
+	case SPI_CLK_Phase_FirstEdge_Capture:
+		CLEAR_BIT(tempreg_CR1, 0);
+		break;
+
+	case SPI_CLK_Phase_SecondEdge_Capture:
+		SET_BIT(tempreg_CR1, 0);
+		break;
+
+	}
+
+
+	/* The frame format (MSB-first or LSB-first depending on the value of the LSBFIRST bit in
+	the SPI_CR1 register) must be the same as the master device.*/
+
+	switch(SPI_CFG->LSBFIRST)
+	{
+	case SPI_LSBFIRST_Disable:
+		CLEAR_BIT(tempreg_CR1, 7);
+		break;
+
+	case SPI_LSBFIRST_Enable:
+		SET_BIT(tempreg_CR1, 7);
+		break;
+	}
+
+
+	//set the BaudRate_Prescaler
+	if(SPI_CFG->Device_State == SPI_Device_State_Master)
+	{
+		switch(SPI_CFG->BaudRate_Prescaler)
+		{
+		case SPI_BaudRate_Prescaler_2:
+			tempreg_CR1 |= (0b000 << 3);
+			break;
+
+		case SPI_BaudRate_Prescaler_4:
+			tempreg_CR1 |= (0b001 << 3);
+			break;
+
+		case SPI_BaudRate_Prescaler_8:
+			tempreg_CR1 |= (0b010 << 3);
+			break;
+
+		case SPI_BaudRate_Prescaler_16:
+			tempreg_CR1 |= (0b011 << 3);
+			break;
+
+		case SPI_BaudRate_Prescaler_32:
+			tempreg_CR1 |= (0b100 << 3);
+			break;
+
+		case SPI_BaudRate_Prescaler_64:
+			tempreg_CR1 |= (0b101 << 3);
+			break;
+
+		case SPI_BaudRate_Prescaler_128:
+			tempreg_CR1 |= (0b110 << 3);
+			break;
+
+		case SPI_BaudRate_Prescaler_256:
+			tempreg_CR1 |= (0b111 << 3);
+			break;
+
+		}
+	}
+
+
+	//Interrupt Settings
+	if(SPI_CFG->SPI_IRQ_Enable != SPI_IRQ_Enable_None)
+	{
+		switch(SPI_CFG->SPI_IRQ_Enable)
+		{
+		case SPI_IRQ_Enable_TXE:
+			SET_BIT(tempreg_CR2, 7);
+			break;
+
+		case SPI_IRQ_Enable_RXNE:
+			SET_BIT(tempreg_CR2, 6);
+			break;
+
+		case SPI_IRQ_Enable_ERRI:
+			SET_BIT(tempreg_CR2, 5);
+			break;
+
+		}
+
+		if(SPI_Instant == SPI1)
+		{
+			NVIC_Enable_SPI1_IRQ35;
+		}
+		else if(SPI_Instant == SPI2)
+		{
+			NVIC_Enable_SPI2_IRQ36;
+		}
+
+	}
+
+
+
+	/*In Hardware mode (refer to Slave select (NSS) pin management), the NSS pin must be
+	connected to a low level signal during the complete byte transmit sequence. In NSS
+	software mode, set the SSM bit and clear the SSI bit in the SPI_CR1 register.*/
+
+
+	//NSS Configurations
+	switch(SPI_CFG->NSS_Mode)
+	{
+	case SPI_NSS_Master_Mode_HW_Output_Enable:
+		CLEAR_BIT(tempreg_CR1, 9);
+		SET_BIT(tempreg_CR2, 2);
+		break;
+
+	case SPI_NSS_Master_Mode_HW_Output_Disable:
+		CLEAR_BIT(tempreg_CR1, 9);
+		CLEAR_BIT(tempreg_CR2, 2);
+		break;
+
+	case SPI_NSS_Mode_SW_SET:
+		SET_BIT(tempreg_CR1, 9);
+		SET_BIT(tempreg_CR1, 8);
+		break;
+
+	case SPI_NSS_Mode_SW_Reset:
+		SET_BIT(tempreg_CR1, 9);
+		CLEAR_BIT(tempreg_CR1, 8);
+		break;
+
+	}
+
+
+	//Enable SPI
+	SET_BIT(tempreg_CR1, 6);
+
+
+	SPI_Instant->SPI_CR1 = tempreg_CR1;
+	SPI_Instant->SPI_CR2 = tempreg_CR2;
+
+
+}
+
+
+
+void MCAL_SPI_DeInit(SPI_TypeDef * SPI_Instant)
+{
+	if(SPI_Instant == SPI1)
+	{
+		NVIC_Disable_SPI1_IRQ35;
+		RCC_SPI1_CLK_DIS();
+	}
+	else if(SPI_Instant == SPI2)
+	{
+		NVIC_Disable_SPI2_IRQ36;
+		RCC_SPI2_CLK_DIS();
+	}
+}
+
+
+
+
+void MCAL_SPI_GPIO_SetPin(SPI_TypeDef * SPI_Instant)
+{
+	GPIO_PinConfig_t Pin_Config;
+
+	if(SPI_Instant == SPI1)
+	{
+		//PA.4 NSS
+		//PA.5 SCK
+		//PA.6 MISO
+		//PA.7 MOSI
+
+		if(Global_SPI_Config[SPI1_INDEX]->Device_State == SPI_Device_State_Master)
+		{
+			//PA.4 NSS
+			switch(Global_SPI_Config[SPI1_INDEX]->NSS_Mode)
+			{
+			case SPI_NSS_Master_Mode_HW_Output_Disable:
+				Pin_Config.GPIO_PinNumber = GPIO_PIN_4;
+				Pin_Config.GPIO_PinMode   = GPIO_MODE_INPUT_FLOATING;
+				MCAL_GPIO_Init(GPIOA, &Pin_Config);
+				break;
+
+			case SPI_NSS_Master_Mode_HW_Output_Enable:
+				Pin_Config.GPIO_PinNumber = GPIO_PIN_4;
+				Pin_Config.GPIO_PinMode   = GPIO_MODE_AFIO_OUTPUT_PUSH_PULL;
+				Pin_Config.GPIO_PinSpeed  = GPIO_OUTPUT_SPEED_10MHz;
+				MCAL_GPIO_Init(GPIOA, &Pin_Config);
+				break;
+
+			}
+
+			//PA.5 SCK
+			Pin_Config.GPIO_PinNumber = GPIO_PIN_5;
+			Pin_Config.GPIO_PinMode   = GPIO_MODE_AFIO_OUTPUT_PUSH_PULL;
+			Pin_Config.GPIO_PinSpeed  = GPIO_OUTPUT_SPEED_10MHz;
+			MCAL_GPIO_Init(GPIOA, &Pin_Config);
+
+			//PA.6 MISO
+			Pin_Config.GPIO_PinNumber = GPIO_PIN_6;
+			Pin_Config.GPIO_PinMode   = GPIO_MODE_INPUT_FLOATING;
+			MCAL_GPIO_Init(GPIOA, &Pin_Config);
+
+
+			//PA.7 MOSI
+			Pin_Config.GPIO_PinNumber = GPIO_PIN_7;
+			Pin_Config.GPIO_PinMode   = GPIO_MODE_AFIO_OUTPUT_PUSH_PULL;
+			Pin_Config.GPIO_PinSpeed  = GPIO_OUTPUT_SPEED_10MHz;
+			MCAL_GPIO_Init(GPIOA, &Pin_Config);
+
+
+
+		}
+		else //slave
+		{
+			//PA.4 NSS
+			if(Global_SPI_Config[SPI1_INDEX]->NSS_Mode == SPI_NSS_Slave_Mode_HW)
+			{
+				Pin_Config.GPIO_PinNumber = GPIO_PIN_4;
+				Pin_Config.GPIO_PinMode   = GPIO_MODE_INPUT_FLOATING;
+				MCAL_GPIO_Init(GPIOA, &Pin_Config);
+			}
+
+			//PA.5 SCK
+			Pin_Config.GPIO_PinNumber = GPIO_PIN_5;
+			Pin_Config.GPIO_PinMode   = GPIO_MODE_INPUT_FLOATING;
+			MCAL_GPIO_Init(GPIOA, &Pin_Config);
+
+			//PA.6 MISO
+			Pin_Config.GPIO_PinNumber = GPIO_PIN_6;
+			Pin_Config.GPIO_PinMode   = GPIO_MODE_AFIO_OUTPUT_PUSH_PULL;
+			Pin_Config.GPIO_PinSpeed  = GPIO_OUTPUT_SPEED_10MHz;
+			MCAL_GPIO_Init(GPIOA, &Pin_Config);
+
+
+			//PA.7 MOSI
+			Pin_Config.GPIO_PinNumber = GPIO_PIN_7;
+			Pin_Config.GPIO_PinMode   = GPIO_MODE_INPUT_FLOATING;
+			MCAL_GPIO_Init(GPIOA, &Pin_Config);
+
+
+		}
+	}
+	else if(SPI_Instant == SPI2)
+	{
+		//PB.12 NSS
+		//PB.13 SCK
+		//PB.14 MISO
+		//PB.15 MOSI
+
+
+
+		if(Global_SPI_Config[SPI2_INDEX]->Device_State == SPI_Device_State_Master)
+		{
+			//PB.12 NSS
+			switch(Global_SPI_Config[SPI2_INDEX]->NSS_Mode)
+			{
+			case SPI_NSS_Master_Mode_HW_Output_Disable:
+				Pin_Config.GPIO_PinNumber = GPIO_PIN_12;
+				Pin_Config.GPIO_PinMode   = GPIO_MODE_INPUT_FLOATING;
+				MCAL_GPIO_Init(GPIOB, &Pin_Config);
+				break;
+
+			case SPI_NSS_Master_Mode_HW_Output_Enable:
+				Pin_Config.GPIO_PinNumber = GPIO_PIN_12;
+				Pin_Config.GPIO_PinMode   = GPIO_MODE_AFIO_OUTPUT_PUSH_PULL;
+				Pin_Config.GPIO_PinSpeed  = GPIO_OUTPUT_SPEED_10MHz;
+				MCAL_GPIO_Init(GPIOB, &Pin_Config);
+				break;
+
+			}
+
+			//PB.13 SCK
+			Pin_Config.GPIO_PinNumber = GPIO_PIN_13;
+			Pin_Config.GPIO_PinMode   = GPIO_MODE_AFIO_OUTPUT_PUSH_PULL;
+			Pin_Config.GPIO_PinSpeed  = GPIO_OUTPUT_SPEED_10MHz;
+			MCAL_GPIO_Init(GPIOB, &Pin_Config);
+
+			//PB.14 MISO
+			Pin_Config.GPIO_PinNumber = GPIO_PIN_14;
+			Pin_Config.GPIO_PinMode   = GPIO_MODE_INPUT_FLOATING;
+			MCAL_GPIO_Init(GPIOB, &Pin_Config);
+
+
+			//PB.15 MOSI
+			Pin_Config.GPIO_PinNumber = GPIO_PIN_15;
+			Pin_Config.GPIO_PinMode   = GPIO_MODE_AFIO_OUTPUT_PUSH_PULL;
+			Pin_Config.GPIO_PinSpeed  = GPIO_OUTPUT_SPEED_10MHz;
+			MCAL_GPIO_Init(GPIOB, &Pin_Config);
+
+
+
+		}
+		else //slave
+		{
+
+			//PB.12 NSS
+			if(Global_SPI_Config[SPI2_INDEX]->NSS_Mode == SPI_NSS_Slave_Mode_HW)
+			{
+				Pin_Config.GPIO_PinNumber = GPIO_PIN_12;
+				Pin_Config.GPIO_PinMode   = GPIO_MODE_INPUT_FLOATING;
+				MCAL_GPIO_Init(GPIOB, &Pin_Config);
+			}
+
+			//PB.13 SCK
+			Pin_Config.GPIO_PinNumber = GPIO_PIN_13;
+			Pin_Config.GPIO_PinMode   = GPIO_MODE_INPUT_FLOATING;
+			MCAL_GPIO_Init(GPIOB, &Pin_Config);
+
+			//PB.14 MISO
+			Pin_Config.GPIO_PinNumber = GPIO_PIN_14;
+			Pin_Config.GPIO_PinMode   = GPIO_MODE_AFIO_OUTPUT_PUSH_PULL;
+			Pin_Config.GPIO_PinSpeed  = GPIO_OUTPUT_SPEED_10MHz;
+			MCAL_GPIO_Init(GPIOB, &Pin_Config);
+
+
+			//PB.15 MOSI
+			Pin_Config.GPIO_PinNumber = GPIO_PIN_15;
+			Pin_Config.GPIO_PinMode   = GPIO_MODE_INPUT_FLOATING;
+			MCAL_GPIO_Init(GPIOB, &Pin_Config);
+
+
+
+		}
+
+
+	}
+}
+
+
+
+
+void MCAL_SPI_SendData(SPI_TypeDef * SPI_Instant, uint16_t * data, Polling_Mechanism polling)
+{
+	if(polling == Polling_Enable)
+	{
+		while(READ_BIT(SPI_Instant->SPI_SR, 1) == Tx_BUFFER_NOT_EMPTY);
+	}
+
+	SPI_Instant->SPI_DR = *data;
+
+
+}
+
+
+
+void MCAL_SPI_ReceiveData(SPI_TypeDef * SPI_Instant, uint16_t * data, Polling_Mechanism polling)
+{
+	if(polling == Polling_Enable)
+	{
+		while(READ_BIT(SPI_Instant->SPI_SR, 0) == Rx_BUFFER_EMPTY);
+	}
+
+	*data = SPI_Instant->SPI_DR;
+}
+
+
+void MCAL_SPI_Tx_Rx(SPI_TypeDef * SPI_Instant, uint16_t * data, Polling_Mechanism polling)
+{
+
+	if(polling == Polling_Enable)
+	{
+		while(READ_BIT(SPI_Instant->SPI_SR, 1) == Tx_BUFFER_NOT_EMPTY);
+	}
+
+	SPI_Instant->SPI_DR = *data;
+
+
+	if(polling == Polling_Enable)
+	{
+		while(READ_BIT(SPI_Instant->SPI_SR, 0) == Rx_BUFFER_EMPTY);
+	}
+
+	*data = SPI_Instant->SPI_DR;
+
+}
+
+
+
+
+/*
+===========================================
+			IRQs
+===========================================
+ */
+
+
+void SPI1_IRQHandler(void)
+{
+	S_IRQ_SRC irq_src;
+
+	irq_src.TXE   = READ_BIT((SPI1->SPI_SR), 1);
+	irq_src.RXNE  = READ_BIT((SPI1->SPI_SR), 0);
+	irq_src.ERRI  = READ_BIT((SPI1->SPI_SR), 4);
+
+
+
+	Global_SPI_Config[SPI1_INDEX]->P_IRQ_CallBack(irq_src);
+}
+
+
+void SPI2_IRQHandler(void)
+{
+	S_IRQ_SRC irq_src;
+
+	irq_src.TXE   = READ_BIT((SPI1->SPI_SR), 1);
+	irq_src.RXNE  = READ_BIT((SPI1->SPI_SR), 0);
+	irq_src.ERRI  = READ_BIT((SPI1->SPI_SR), 4);
+
+
+	Global_SPI_Config[SPI2_INDEX]->P_IRQ_CallBack(irq_src);
+}
+
+
+

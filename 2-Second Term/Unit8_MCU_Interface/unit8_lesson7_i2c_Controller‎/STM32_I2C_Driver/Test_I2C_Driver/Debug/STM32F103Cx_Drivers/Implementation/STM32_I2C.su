@@ -1,0 +1,9 @@
+STM32_I2C.c:75:6:I2C_Generate_Start	16	static
+STM32_I2C.c:130:6:I2C_SendAddress	16	static
+STM32_I2C.c:143:6:I2C_Generate_Stop_Condition	16	static
+STM32_I2C.c:149:6:I2C_AcknowledgeConfig	16	static
+STM32_I2C.c:182:6:MCAL_I2C_Init	40	static
+STM32_I2C.c:371:6:MCAL_I2C_DeInit	16	static
+STM32_I2C.c:388:6:MCAL_I2C_GPIO_SetPin	24	static
+STM32_I2C.c:434:6:MCAL_I2C_Trasmitt	32	static
+STM32_I2C.c:479:6:MCAL_I2C_Receive	32	static

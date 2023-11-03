@@ -1,0 +1,45 @@
+#ifndef I2C_SLAVE_EEPROM_H_
+#define I2C_SLAVE_EEPROM_H_
+
+
+//---------------------------------------------------
+//Includes
+//---------------------------------------------------
+
+#include "STM32_I2C.h"
+
+//---------------------------------------------------
+//User Type Definition (Structures)
+//---------------------------------------------------
+
+//---------------------------------------------------
+//Macros Configuration References
+//---------------------------------------------------
+
+//EEPROM is an i2c SLAVE
+
+//Idle Mode           : device is in high impedance state
+//Master Transmitter  : the device transmits data to the slave receiver
+//Master Receiver     : the device receives data from slave transmitter
+
+#define EEPROM_SLAVE_ADDRESS		0x2A
+
+//---------------------------------------------------
+//@ref Module REF Name define
+//---------------------------------------------------
+
+
+
+//---------------------------------------------------
+//APIs Supported by "HAL EEPROM Driver"
+//---------------------------------------------------
+
+void HAL_EEPROM_Init(void);
+
+uint8_t HAL_EEPROM_Write_Nbytes(uint32_t memory_address, uint8_t *dataIn, uint32_t dataLen);
+
+uint8_t HAL_EEPROM_Read_Nbytes(uint32_t memory_address, uint8_t *dataOut, uint32_t dataLen);
+
+
+
+#endif /* I2C_SLAVE_EEPROM_H_ */
