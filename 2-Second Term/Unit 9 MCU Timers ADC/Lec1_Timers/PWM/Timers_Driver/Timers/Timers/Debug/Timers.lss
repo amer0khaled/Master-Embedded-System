@@ -1,0 +1,440 @@
+
+Timers.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000230  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000000  00800060  00000230  000002c4  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000004  00800060  00800060  000002c4  2**0
+                  ALLOC
+  3 .stab         000006cc  00000000  00000000  000002c4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+  4 .stabstr      00000085  00000000  00000000  00000990  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  5 .debug_aranges 000000a0  00000000  00000000  00000a18  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   0000055a  00000000  00000000  00000ab8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 000001b6  00000000  00000000  00001012  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000003ae  00000000  00000000  000011c8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000148  00000000  00000000  00001578  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000001ab  00000000  00000000  000016c0  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000245  00000000  00000000  0000186b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 ef 00 	jmp	0x1de	; 0x1de <__vector_10>
+  2c:	0c 94 c8 00 	jmp	0x190	; 0x190 <__vector_11>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e0 e3       	ldi	r30, 0x30	; 48
+  68:	f2 e0       	ldi	r31, 0x02	; 2
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a0 36       	cpi	r26, 0x60	; 96
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	10 e0       	ldi	r17, 0x00	; 0
+  78:	a0 e6       	ldi	r26, 0x60	; 96
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a4 36       	cpi	r26, 0x64	; 100
+  82:	b1 07       	cpc	r27, r17
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 49 00 	call	0x92	; 0x92 <main>
+  8a:	0c 94 16 01 	jmp	0x22c	; 0x22c <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <main>:
+
+
+#define null ((void *)0)
+
+int main()
+{
+  92:	cf 93       	push	r28
+  94:	df 93       	push	r29
+  96:	00 d0       	rcall	.+0      	; 0x98 <main+0x6>
+  98:	00 d0       	rcall	.+0      	; 0x9a <main+0x8>
+  9a:	0f 92       	push	r0
+  9c:	cd b7       	in	r28, 0x3d	; 61
+  9e:	de b7       	in	r29, 0x3e	; 62
+	DDRB |= (1<<3);
+  a0:	bb 9a       	sbi	0x17, 3	; 23
+	
+	Timer0_Config timer;
+	
+	timer.Timer0_Mode    = Timer0_Mode_FastPWM_Inverting;
+  a2:	82 e0       	ldi	r24, 0x02	; 2
+  a4:	89 83       	std	Y+1, r24	; 0x01
+	timer.P_IRQ_CallBack = null;
+  a6:	1d 82       	std	Y+5, r1	; 0x05
+  a8:	1c 82       	std	Y+4, r1	; 0x04
+	timer.Timer0_CLK_SRC = Timer0_CLK_SRC_Internal_prescler_8;
+  aa:	8a 83       	std	Y+2, r24	; 0x02
+	timer.Timer0_IRQ     = Timer_IRQ_None;
+  ac:	1b 82       	std	Y+3, r1	; 0x03
+	
+	Timer0_Init(&timer);
+  ae:	ce 01       	movw	r24, r28
+  b0:	01 96       	adiw	r24, 0x01	; 1
+  b2:	0e 94 5f 00 	call	0xbe	; 0xbe <Timer0_Init>
+	Timer0_PWM_DutyCycle(50);
+  b6:	82 e3       	ldi	r24, 0x32	; 50
+  b8:	0e 94 ba 00 	call	0x174	; 0x174 <Timer0_PWM_DutyCycle>
+  bc:	ff cf       	rjmp	.-2      	; 0xbc <main+0x2a>
+
+000000be <Timer0_Init>:
+			APIs
+===========================================
+*/
+
+void Timer0_Init(Timer0_Config * TimerCFG)
+{
+  be:	fc 01       	movw	r30, r24
+	if(TimerCFG != 0)
+  c0:	00 97       	sbiw	r24, 0x00	; 0
+  c2:	09 f4       	brne	.+2      	; 0xc6 <Timer0_Init+0x8>
+  c4:	4a c0       	rjmp	.+148    	; 0x15a <Timer0_Init+0x9c>
+	{
+		//Reset Timer Counter Register
+		//TCNT0 = 0x00;
+		
+		//set Global Pointer By Configuration Structure
+		GP_Timer0_User_Config = TimerCFG;
+  c6:	90 93 61 00 	sts	0x0061, r25
+  ca:	80 93 60 00 	sts	0x0060, r24
+		
+		//select Timer Mode
+		switch(TimerCFG->Timer0_Mode)
+  ce:	80 81       	ld	r24, Z
+  d0:	81 30       	cpi	r24, 0x01	; 1
+  d2:	41 f0       	breq	.+16     	; 0xe4 <Timer0_Init+0x26>
+  d4:	81 30       	cpi	r24, 0x01	; 1
+  d6:	18 f0       	brcs	.+6      	; 0xde <Timer0_Init+0x20>
+  d8:	84 30       	cpi	r24, 0x04	; 4
+  da:	f0 f4       	brcc	.+60     	; 0x118 <Timer0_Init+0x5a>
+  dc:	0a c0       	rjmp	.+20     	; 0xf2 <Timer0_Init+0x34>
+		{
+			case Timer0_Mode_Normal:
+			TCCR0 &= (~(1<<3)) | (~(1<<6));
+  de:	83 b7       	in	r24, 0x33	; 51
+  e0:	83 bf       	out	0x33, r24	; 51
+			break;
+  e2:	1a c0       	rjmp	.+52     	; 0x118 <Timer0_Init+0x5a>
+			
+			case Timer0_Mode_CTC:
+			TCCR0 &= ~(1<<3);
+  e4:	83 b7       	in	r24, 0x33	; 51
+  e6:	87 7f       	andi	r24, 0xF7	; 247
+  e8:	83 bf       	out	0x33, r24	; 51
+			TCCR0 |= (1<<6);
+  ea:	83 b7       	in	r24, 0x33	; 51
+  ec:	80 64       	ori	r24, 0x40	; 64
+  ee:	83 bf       	out	0x33, r24	; 51
+			break;
+  f0:	13 c0       	rjmp	.+38     	; 0x118 <Timer0_Init+0x5a>
+			
+			case Timer0_Mode_FastPWM_NonInverting:
+			case Timer0_Mode_FastPWM_Inverting:
+			TCCR0 |= (1<<3) | (1<<6);
+  f2:	83 b7       	in	r24, 0x33	; 51
+  f4:	88 64       	ori	r24, 0x48	; 72
+  f6:	83 bf       	out	0x33, r24	; 51
+			
+			//make OC0 PB.3 as output pin
+			DDRB |= (1<<3);
+  f8:	bb 9a       	sbi	0x17, 3	; 23
+			
+			if (TimerCFG->Timer0_Mode == Timer0_Mode_FastPWM_Inverting)
+  fa:	80 81       	ld	r24, Z
+  fc:	82 30       	cpi	r24, 0x02	; 2
+  fe:	21 f4       	brne	.+8      	; 0x108 <Timer0_Init+0x4a>
+			{
+				TCCR0 |= (1<<4) | (1<<5);
+ 100:	83 b7       	in	r24, 0x33	; 51
+ 102:	80 63       	ori	r24, 0x30	; 48
+ 104:	83 bf       	out	0x33, r24	; 51
+ 106:	08 c0       	rjmp	.+16     	; 0x118 <Timer0_Init+0x5a>
+			}
+			else if(TimerCFG->Timer0_Mode == Timer0_Mode_FastPWM_NonInverting)
+ 108:	83 30       	cpi	r24, 0x03	; 3
+ 10a:	31 f4       	brne	.+12     	; 0x118 <Timer0_Init+0x5a>
+			{
+				TCCR0 &= ~(1<<4);
+ 10c:	83 b7       	in	r24, 0x33	; 51
+ 10e:	8f 7e       	andi	r24, 0xEF	; 239
+ 110:	83 bf       	out	0x33, r24	; 51
+				TCCR0 |= (1<<5);
+ 112:	83 b7       	in	r24, 0x33	; 51
+ 114:	80 62       	ori	r24, 0x20	; 32
+ 116:	83 bf       	out	0x33, r24	; 51
+			break;
+			
+		}
+		
+		//set Timer Clock
+		TCCR0 |= (TimerCFG->Timer0_CLK_SRC);
+ 118:	93 b7       	in	r25, 0x33	; 51
+ 11a:	81 81       	ldd	r24, Z+1	; 0x01
+ 11c:	89 2b       	or	r24, r25
+ 11e:	83 bf       	out	0x33, r24	; 51
+		
+		if ( (TimerCFG->Timer0_CLK_SRC == Timer0_CLK_SRC_External_T0_Falling) || (TimerCFG->Timer0_CLK_SRC == Timer0_CLK_SRC_External_T0_Rising) )
+ 120:	81 81       	ldd	r24, Z+1	; 0x01
+ 122:	86 50       	subi	r24, 0x06	; 6
+ 124:	82 30       	cpi	r24, 0x02	; 2
+ 126:	08 f4       	brcc	.+2      	; 0x12a <Timer0_Init+0x6c>
+		{
+			//make T0 at PB.0 as output pin
+			DDRB |= (1<<0);
+ 128:	b8 9a       	sbi	0x17, 0	; 23
+		}
+		
+		
+		//config Timer Interrupt
+		if(TimerCFG->Timer0_IRQ != Timer_IRQ_None)
+ 12a:	82 81       	ldd	r24, Z+2	; 0x02
+ 12c:	88 23       	and	r24, r24
+ 12e:	79 f0       	breq	.+30     	; 0x14e <Timer0_Init+0x90>
+		{
+			//Enable Global Interrupt Mask I-Bit at SREG
+			SREG |= (1<<7);
+ 130:	8f b7       	in	r24, 0x3f	; 63
+ 132:	80 68       	ori	r24, 0x80	; 128
+ 134:	8f bf       	out	0x3f, r24	; 63
+			
+			if (TimerCFG->Timer0_IRQ == Timer_IRQ_OverFlow)
+ 136:	82 81       	ldd	r24, Z+2	; 0x02
+ 138:	81 30       	cpi	r24, 0x01	; 1
+ 13a:	21 f4       	brne	.+8      	; 0x144 <Timer0_Init+0x86>
+			{
+				TIMSK |= (1<<TOIE0);
+ 13c:	89 b7       	in	r24, 0x39	; 57
+ 13e:	81 60       	ori	r24, 0x01	; 1
+ 140:	89 bf       	out	0x39, r24	; 57
+ 142:	05 c0       	rjmp	.+10     	; 0x14e <Timer0_Init+0x90>
+			}
+			else if (TimerCFG->Timer0_IRQ == Timer_IRQ_CompareMatch)
+ 144:	82 30       	cpi	r24, 0x02	; 2
+ 146:	19 f4       	brne	.+6      	; 0x14e <Timer0_Init+0x90>
+			{
+				TIMSK |= (1<<OCIE0);
+ 148:	89 b7       	in	r24, 0x39	; 57
+ 14a:	82 60       	ori	r24, 0x02	; 2
+ 14c:	89 bf       	out	0x39, r24	; 57
+			}
+		}
+		
+		/* Call back function address */
+		GP_IRQ_CallBack = TimerCFG->P_IRQ_CallBack;
+ 14e:	83 81       	ldd	r24, Z+3	; 0x03
+ 150:	94 81       	ldd	r25, Z+4	; 0x04
+ 152:	90 93 63 00 	sts	0x0063, r25
+ 156:	80 93 62 00 	sts	0x0062, r24
+ 15a:	08 95       	ret
+
+0000015c <Timer0_DeInit>:
+
+
+void Timer0_DeInit(void)
+{
+	// put zeros in cs0 , cs1 , cs2
+	TCCR0 &= ~((1<<0)|(1<<1)|(1<<2));
+ 15c:	83 b7       	in	r24, 0x33	; 51
+ 15e:	88 7f       	andi	r24, 0xF8	; 248
+ 160:	83 bf       	out	0x33, r24	; 51
+}
+ 162:	08 95       	ret
+
+00000164 <Timer0_SetCompareValue>:
+
+void Timer0_SetCompareValue(uint8_t TicksNum)
+{
+	OCR0 |= TicksNum;
+ 164:	9c b7       	in	r25, 0x3c	; 60
+ 166:	89 2b       	or	r24, r25
+ 168:	8c bf       	out	0x3c, r24	; 60
+}
+ 16a:	08 95       	ret
+
+0000016c <Timer0_GetCompareValue>:
+
+
+void Timer0_GetCompareValue(uint8_t *TicksNum)
+{
+	*TicksNum = TCNT0;
+ 16c:	22 b7       	in	r18, 0x32	; 50
+ 16e:	fc 01       	movw	r30, r24
+ 170:	20 83       	st	Z, r18
+}
+ 172:	08 95       	ret
+
+00000174 <Timer0_PWM_DutyCycle>:
+
+void Timer0_PWM_DutyCycle(uint8_t duty_cycle)
+{
+	if (GP_Timer0_User_Config->Timer0_Mode == Timer0_Mode_FastPWM_Inverting)
+ 174:	e0 91 60 00 	lds	r30, 0x0060
+ 178:	f0 91 61 00 	lds	r31, 0x0061
+ 17c:	90 81       	ld	r25, Z
+ 17e:	92 30       	cpi	r25, 0x02	; 2
+ 180:	19 f4       	brne	.+6      	; 0x188 <Timer0_PWM_DutyCycle+0x14>
+	{
+		OCR0 = (uint8_t)(255-duty_cycle);
+ 182:	80 95       	com	r24
+ 184:	8c bf       	out	0x3c, r24	; 60
+ 186:	08 95       	ret
+	}
+	else if (GP_Timer0_User_Config->Timer0_Mode == Timer0_Mode_FastPWM_NonInverting)
+ 188:	93 30       	cpi	r25, 0x03	; 3
+ 18a:	09 f4       	brne	.+2      	; 0x18e <Timer0_PWM_DutyCycle+0x1a>
+	{
+		OCR0 = duty_cycle;
+ 18c:	8c bf       	out	0x3c, r24	; 60
+ 18e:	08 95       	ret
+
+00000190 <__vector_11>:
+/* ================================================================ */
+
+
+//overflow ISR
+ISR(TIMER0_OVF_vect)
+{
+ 190:	1f 92       	push	r1
+ 192:	0f 92       	push	r0
+ 194:	0f b6       	in	r0, 0x3f	; 63
+ 196:	0f 92       	push	r0
+ 198:	11 24       	eor	r1, r1
+ 19a:	2f 93       	push	r18
+ 19c:	3f 93       	push	r19
+ 19e:	4f 93       	push	r20
+ 1a0:	5f 93       	push	r21
+ 1a2:	6f 93       	push	r22
+ 1a4:	7f 93       	push	r23
+ 1a6:	8f 93       	push	r24
+ 1a8:	9f 93       	push	r25
+ 1aa:	af 93       	push	r26
+ 1ac:	bf 93       	push	r27
+ 1ae:	ef 93       	push	r30
+ 1b0:	ff 93       	push	r31
+	GP_IRQ_CallBack();
+ 1b2:	e0 91 62 00 	lds	r30, 0x0062
+ 1b6:	f0 91 63 00 	lds	r31, 0x0063
+ 1ba:	09 95       	icall
+}
+ 1bc:	ff 91       	pop	r31
+ 1be:	ef 91       	pop	r30
+ 1c0:	bf 91       	pop	r27
+ 1c2:	af 91       	pop	r26
+ 1c4:	9f 91       	pop	r25
+ 1c6:	8f 91       	pop	r24
+ 1c8:	7f 91       	pop	r23
+ 1ca:	6f 91       	pop	r22
+ 1cc:	5f 91       	pop	r21
+ 1ce:	4f 91       	pop	r20
+ 1d0:	3f 91       	pop	r19
+ 1d2:	2f 91       	pop	r18
+ 1d4:	0f 90       	pop	r0
+ 1d6:	0f be       	out	0x3f, r0	; 63
+ 1d8:	0f 90       	pop	r0
+ 1da:	1f 90       	pop	r1
+ 1dc:	18 95       	reti
+
+000001de <__vector_10>:
+
+//compare match ISR
+ISR(TIMER0_COMP_vect)
+{
+ 1de:	1f 92       	push	r1
+ 1e0:	0f 92       	push	r0
+ 1e2:	0f b6       	in	r0, 0x3f	; 63
+ 1e4:	0f 92       	push	r0
+ 1e6:	11 24       	eor	r1, r1
+ 1e8:	2f 93       	push	r18
+ 1ea:	3f 93       	push	r19
+ 1ec:	4f 93       	push	r20
+ 1ee:	5f 93       	push	r21
+ 1f0:	6f 93       	push	r22
+ 1f2:	7f 93       	push	r23
+ 1f4:	8f 93       	push	r24
+ 1f6:	9f 93       	push	r25
+ 1f8:	af 93       	push	r26
+ 1fa:	bf 93       	push	r27
+ 1fc:	ef 93       	push	r30
+ 1fe:	ff 93       	push	r31
+	GP_IRQ_CallBack();
+ 200:	e0 91 62 00 	lds	r30, 0x0062
+ 204:	f0 91 63 00 	lds	r31, 0x0063
+ 208:	09 95       	icall
+ 20a:	ff 91       	pop	r31
+ 20c:	ef 91       	pop	r30
+ 20e:	bf 91       	pop	r27
+ 210:	af 91       	pop	r26
+ 212:	9f 91       	pop	r25
+ 214:	8f 91       	pop	r24
+ 216:	7f 91       	pop	r23
+ 218:	6f 91       	pop	r22
+ 21a:	5f 91       	pop	r21
+ 21c:	4f 91       	pop	r20
+ 21e:	3f 91       	pop	r19
+ 220:	2f 91       	pop	r18
+ 222:	0f 90       	pop	r0
+ 224:	0f be       	out	0x3f, r0	; 63
+ 226:	0f 90       	pop	r0
+ 228:	1f 90       	pop	r1
+ 22a:	18 95       	reti
+
+0000022c <_exit>:
+ 22c:	f8 94       	cli
+
+0000022e <__stop_program>:
+ 22e:	ff cf       	rjmp	.-2      	; 0x22e <__stop_program>
