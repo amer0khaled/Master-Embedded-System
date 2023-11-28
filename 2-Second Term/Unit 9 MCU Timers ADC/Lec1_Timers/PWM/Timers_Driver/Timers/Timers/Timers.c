@@ -149,11 +149,11 @@ void Timer0_PWM_DutyCycle(uint8_t duty_cycle)
 {
 	if (GP_Timer0_User_Config->Timer0_Mode == Timer0_Mode_FastPWM_Inverting)
 	{
-		OCR0 = (uint8_t)(255-duty_cycle);
+		OCR0 = (uint8_t)(255 - ((duty_cycle/100.0)*256));
 	}
 	else if (GP_Timer0_User_Config->Timer0_Mode == Timer0_Mode_FastPWM_NonInverting)
 	{
-		OCR0 = duty_cycle;
+		OCR0 = (uint8_t)((duty_cycle/100.0)*256) - 1;
 	}
 }
 
